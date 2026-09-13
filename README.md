@@ -128,6 +128,5 @@ Because transaction emails arrive continuously, running the script on a **weekly
 
 The script will now run automatically once a week, scan all transactions arriving over the prior 8-day rolling window, batch-parse them with Gemini, prepend them to the sheet, and mark them as processed.
 
-```
 
 ```
