@@ -1,16 +1,13 @@
-```markdown
 # Automated Bank Transaction Parser with Gemini API & Google Apps Script
 
 An automated, serverless pipeline that extracts structured transaction data from banking and card notification emails, logs them chronologically into Google Sheets, and tags processed emails in Gmail.
 
----
 
 ## Architecture & Privacy
 
 This solution runs entirely within your personal Google workspace:
 
 
-```
 
 Gmail (Transaction Alert)
 │
@@ -23,12 +20,10 @@ Gemini API (Structured JSON Extraction)
 ▼
 Google Sheets (Chronological Record & Deduplication)
 
-```
 
 * **Zero External Servers:** Runs completely inside your own Google account using Google Apps Script, Gmail, and Google Sheets.
 * **Direct LLM Calls:** Only stripped email text is sent via HTTPS directly to Google's Generative Language API endpoint. No third-party data middleware or scrapers are used.
 
----
 
 ## Key Features
 
@@ -41,7 +36,6 @@ Google Sheets (Chronological Record & Deduplication)
 * **Descending Chronological Insertion:** Automatically inserts new transactions directly under row 1 headers, keeping the most recent spends visible at the top.
 * **Safe Batching:** Bundles up to 15 transactions per single LLM call to respect free-tier quotas and prevent Apps Script 6-minute execution timeouts.
 
----
 
 ## Model Selection & Free-Tier Quota
 
@@ -52,7 +46,6 @@ This pipeline is configured by default for **`gemini-3.1-flash-lite`**.
 * **Preview/Standard Flash Quota Warning:** Base models like `gemini-3.6-flash` often carry an unlinked free-tier daily cap of only 20 RPD. Bundling 15 emails per call into `gemini-3.1-flash-lite` easily processes up to **7,500 emails/day** within free-tier limits.
 * **Reliable JSON Output:** High accuracy when handling Indian banking terminology, VPA identifiers, and multi-bank alert templates under native structured `responseSchema` enforcement.
 
----
 
 ## Prerequisites
 
@@ -65,7 +58,6 @@ This pipeline is configured by default for **`gemini-3.1-flash-lite`**.
 3. **Google AI Studio API Key:**
    * An active API key generated from [Google AI Studio](https://aistudio.google.com/).
 
----
 
 ## Setup Instructions
 
@@ -87,11 +79,9 @@ In your Google Sheet, rename the active tab to **`Transactions`** and paste thes
    const PROCESSED_LABEL = "Banking Transaction/Processed"; // Created automatically
    const SHEET_TAB_NAME = "Transactions";
 
-```
 
 *If your Gmail label is named differently, update `SOURCE_LABEL` accordingly.*
 
----
 
 ### Step 3: Securely Add Your Gemini API Key
 
